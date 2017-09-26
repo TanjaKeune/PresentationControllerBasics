@@ -10,6 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBAction func showDetails(_ sender: Any) {
+        
+        let ab = UIStoryboard(name: "Main", bundle: nil)
+        
+        let detailVC = ab.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
+        detailVC.modalPresentationStyle = .popover
+        
+        let detailPopover = detailVC.popoverPresentationController!
+        
+        let sourceButton = sender as! UIBarButtonItem
+        
+        detailPopover.barButtonItem = sourceButton
+        detailPopover.permittedArrowDirections = .any
+        
+        self.present(detailVC, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
